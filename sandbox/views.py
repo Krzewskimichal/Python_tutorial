@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.edit import FormView
-from sandbox.forms import LoginForm, RegisterForm
+from sandbox.forms import LoginForm, RegisterForm, AddDataForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
@@ -64,3 +64,21 @@ class MainSiteView(View):
 
     def get(self, request):
         return render(request, 'mainsite.html')
+
+
+#  -------------------Admin Site--------------------------------
+class AddDataView(View):
+
+    def get(self, request):
+        data = AddDataForm()
+        return render(request, 'adddata.html', {'data': data})
+
+    def post(self, request):
+        data = AddDataForm(request.POST)
+        if data.is_valid():
+            data.save()
+            message = "Data has been added."
+            return render(request, 'adddata.html', {'message': message})
+        else:
+            message = "Ups! Something gone wrong! Try again."
+            return render(request, 'adddata.html', {'message': message})
