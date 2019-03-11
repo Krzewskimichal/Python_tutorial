@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class='table'>
+        <tr>
+            <th>Function</th>
+            <th>Description</th>
+        </tr>
+        <tbody>
+            {% for i in data %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.definition }}</td>
+                <tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

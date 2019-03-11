@@ -5,6 +5,7 @@ from django.views.generic.edit import FormView
 from sandbox.forms import LoginForm, RegisterForm, AddDataForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from sandbox.models import BuiltInFunction
 
 
 class LoginView(View):
@@ -64,6 +65,13 @@ class MainSiteView(View):
 
     def get(self, request):
         return render(request, 'mainsite.html')
+
+
+class BuiltInFunctionView(View):
+
+    def get(self, request):
+        data = BuiltInFunction.objects.all()
+        return render(request, 'built-in-function.html', {'data': data})
 
 
 #  -------------------Admin Site--------------------------------
