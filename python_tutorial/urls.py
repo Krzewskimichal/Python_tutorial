@@ -16,10 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
-from sandbox.views import LoginView, MainSiteView
+from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^login/$', LoginView.as_view()),
     url(r'^main/$', MainSiteView.as_view(), name='main'),
+    url(r'^logout/$', logout_view),
+    url(r'^register/$', RegisterView.as_view()),
+
 ]

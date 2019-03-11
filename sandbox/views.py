@@ -1,8 +1,9 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.edit import FormView
-from sandbox.forms import LoginForm
-from django.contrib.auth import authenticate, login
+from sandbox.forms import LoginForm, RegisterForm
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 
 
@@ -23,7 +24,8 @@ class LoginView(View):
             if user1 is not None:
                 if user1.is_active:
                     login(request, user1)
-                    return render(request, 'mainsite.html')
+                    hello = "hello"
+                    return render(request, 'mainsite.html', {'hello': hello})
             elif user2 is not None:
                 if user2.is_active:
                     login(request, user2)
@@ -31,10 +33,34 @@ class LoginView(View):
             return render(request, 'login.html', {'error': error})
 
 
+def logout_view(request):
+    logout(request)
+    bye = 'Logout'
+    return render(request, 'mainsite.html', {'bye': bye})
+
+
+class RegisterView(View):
+
+    def get(self, request):
+        form = RegisterForm()
+        return render(request, 'register.html', {'form': form})
+
+    def post(self, request):
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password1 = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+            email = form.cleaned_data['email']
+            if password1 == password2:
+                User.objects.create(username=username, password=password1, email=email)
+                return render(request, 'mainsite.html')
+            else:
+                error = "Passwords are not the same!"
+                return render(request, 'register.html', {'error': error})
+
+
 class MainSiteView(View):
 
     def get(self, request):
         return render(request, 'mainsite.html')
-
-    def post(self, request):
-        pass
