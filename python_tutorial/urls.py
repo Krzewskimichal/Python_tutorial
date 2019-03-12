@@ -16,7 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
-from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView, AddDataView, BuiltInFunctionView
+from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView, AddDataView, BuiltInFunctionView, \
+    HomeView, LessonView
+
 
 urlpatterns = [
     #  ---------------admin site--------------------------------
@@ -27,9 +29,11 @@ urlpatterns = [
     url(r'^main/$', MainSiteView.as_view(), name='main'),
     url(r'^logout/$', logout_view),
     url(r'^register/$', RegisterView.as_view()),
+    url(r'^home/$', HomeView.as_view()),
 
-    #  --------------------vertical nav------------------------
+
+    #  --------------------vertical nav--------------------------
     url(r'^built-in-function/$', BuiltInFunctionView.as_view()),
-
-
+    url(r'^installpython/$', LessonView.as_view()),
+    url(r'^lesson1/(?P<lesson_number>(\d)+)$', LessonView.as_view()),
 ]
