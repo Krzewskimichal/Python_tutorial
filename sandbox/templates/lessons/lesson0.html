@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div>
+            <h3>Install Python</h3>
+
+            <p>Many PCs and Macs will have python already installed.</p>
+
+            <p>To check if you have python installed on a Windows PC,
+                search in the start bar for Python or run the following on the Command Line (cmd.exe):</p>
+
+            <p class='terminal_command'>C:\Users\Your Name>python --version</p>
+
+            <p>To check if you have python installed on a Linux or Mac, then on linux open the command
+            line or on Mac open the Terminal and type:</p>
+
+            <p class='terminal_command'>python --version</p>
+
+            <p>If you find that you do not have python installed on your computer, then you can download
+                it for free from the following website: <a href='https://www.python.org'>https://www.python.org</a></p>
+
+        </div>
+
+        <div>
+            <h3>Python Quickstart</h3>
+
+            <p>Python is an interpreted programming language, this means that as a developer you write Python (.py)
+                files in a text editor and then put those files into the python interpreter to be executed.</p>
+
+            <p>The way to run a python file is like this on the command line:</p>
+
+            <p class="terminal_command">C:\Users\Your Name>python helloworld.py</p>
+
+            <p>Where "helloworld.py" is the name of your python file.</p>
+
+            <p>Let's write our first Python file, called helloworld.py, which can be done in any text editor.</p>
+
+            <div class="container box_shadow" style='background-color: lightgray'>
+
+                <p style="padding: 10px">helloworld.py</p>
+
+                <p style="background-color: white; padding: 5px"><span style='color: mediumblue;'>print</span>
+                    <span style='color:brown'>("Hello, World!")</span></p>
+
+            </div>
+
+            <p>Simple as that. Save your file. Open your command line, navigate to the directory where you
+                saved your file, and run:</p>
+
+            <p class="terminal_command">C:\Users\Your Name>python helloworld.py</p>
+
+            <p>The output should read:</p>
+
+            <p class="terminal_command">Hello, World! </p>
+
+            <p>Congratulations, you have written and executed your first Python program.</p>
+
+        </div>
+
+        <div>
+
+            <h3>The Python Command Line</h3>
+
+            <p>To test a short amount of code in python sometimes it is quickest and easiest not to write the code
+                in a file. This is made possible because Python can be run as a command line itself.</p>
+
+            <p>Type the following on the Windows, Mac or Linux command line:</p>
+
+            <p class='terminal_command' style="padding: 5px">C:\Users\Your Name>python</p>
+
+            <p>From there you can write any python, including our hello world example from earlier in the tutorial:</p>
+
+            <p class='terminal_command' style="padding: 5px"><span style='color: gray'>C:\Users\Your Name>python<br>
+                Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:04:45) [MSC v.1900 32 bit (Intel)] on win32<br>
+                Type "help", "copyright", "credits" or "license" for more information.<br></span>
+                >>> print("Hello, World!") </p>
+
+            <p>Which will write "Hello, World!" in the command line:</p>
+
+            <p class='terminal_command' style="padding: 5px"><span style='color: gray'>C:\Users\Your Name>python<br>
+                Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:04:45) [MSC v.1900 32 bit (Intel)] on win32<br>
+                Type "help", "copyright", "credits" or "license" for more information.<br>
+                >>> print("Hello, World!")<br></span>
+                Hello, World!</p>
+
+            <p>Whenever you are done in the python command line, you can simply type the following to quit the
+                python command line interface:</p>
+
+            <p class="terminal_command" style="padding: 5px">exit()</p>
+
+        </div>
+
+    </div>
+{% endblock %}

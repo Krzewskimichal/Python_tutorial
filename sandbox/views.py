@@ -83,7 +83,7 @@ class LessonView(View):
 
     def get(self, request, lesson_number):
         lesson_number = str(lesson_number)
-        return render(request, 'lessons/{}'.format(lesson_number))
+        return render(request, 'lessons/lesson{}.html'.format(lesson_number))
 
 
 #  -------------------Admin Site--------------------------------

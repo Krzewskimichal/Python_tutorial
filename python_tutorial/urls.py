@@ -34,6 +34,5 @@ urlpatterns = [
 
     #  --------------------vertical nav--------------------------
     url(r'^built-in-function/$', BuiltInFunctionView.as_view()),
-    url(r'^installpython/$', LessonView.as_view()),
-    url(r'^lesson1/(?P<lesson_number>(\d)+)$', LessonView.as_view()),
+    url(r'^lesson/(?P<lesson_number>(\d)+)$', LessonView.as_view()),
 ]

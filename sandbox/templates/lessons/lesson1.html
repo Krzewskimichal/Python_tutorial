@@ -1,10 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
+lesson 1
+    <div class="container">
+        <div>
 
-</body>
-</html>
+            <h3>Execute Python Syntax</h3>
+
+            <p>As we learned in the previous page, Python syntax can be executed by writing directly in the Command
+                Line:</p>
+
+            <p>Or by creating a python file on the server, using the .py file extension,
+                and running it in the Command Line:</p>
+
+        </div>
+        <div>
+
+            <h3>Python Indentations</h3>
+
+            <p>Where in other programming languages the indentation in code is for readability only,
+                in Python the indentation is very important. Python uses indentation to indicate a block of code.</p>
+
+        </div>
+        <div>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;"><span style="color:mediumblue">if</span>
+                <span style="color: red">10</span> > <span style="color: red">5</span>:<br>
+                <span style="color:mediumblue">&nbsp;&nbsp;&nbsp;&nbsp;print</span>(<span style="color: brown">
+                        "Ten is greater than five!"</span>)</p>
+
+            </div>
+
+            <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python demo_indentation.py
+                    Five is greater than two! </p>
+
+            <p>Python will give you an error if you skip the indentation:</p>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;"><span style="color:mediumblue">if</span>
+                <span style="color: red">10</span> > <span style="color: red">5</span>:<br>
+                <span style="color:mediumblue">print</span>(<span style="color: brown">"Ten is greater than five!"
+                </span>)</p>
+
+            </div>
+
+                <p class='terminal_command' style='padding: 10px;'>C:\Users\My Name>python demo_indentation_test.py<br>
+                File "demo_indentation_test.py", line 2<br>
+                print("Five is greater than two!")<br>
+                    ^<br>
+                IndentationError: expected an indented block</p><br>
+
+        </div>
+        <div>
+
+            <h3>Comments</h3>
+
+            <p>Python has commenting capability for the purpose of in-code documentation.</p>
+
+            <p>Comments start with a #, and Python will render the rest of the line as a comment:</p>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;">
+                <span style="color: green">#This is a comment.</span><br>
+                <span style="color:mediumblue">print</span>(<span style="color: brown">"Hello, World!"
+                </span>)</p>
+
+            </div>
+
+            <p class="terminal_command" style="padding: 10px;">C:\Users\My Name>python demo_comment.py<br>
+                Hello, World!
+
+            <h3>Docstrings</h3>
+
+            <p>Python also has extended documentation capability, called docstrings.</p>
+
+            <p>Docstrings can be one line, or multiline.</p>
+
+            <p>Python uses triple quotes at the beginning and end of the docstring:</p>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p>Docstrings are also comments:</p>
+
+                <p style="color: brown;">"""This is a<br>
+                multiline docstring."""<br>
+                    <span style="color: mediumblue">print</span>(<span style="color: brown">"Hello, World!"</span>)</p>
+
+            </div>
+        </div>
+        <button>Exam</button>
+    </div>
+{% endblock %}

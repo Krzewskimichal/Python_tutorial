@@ -8,6 +8,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/sandbox/static/style.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="sandbox/static/js.js"></script>
@@ -15,15 +17,15 @@
 
 </head>
 
-<body class="dupa">
+<body>
 
-<header>
+<header class="position_fixed" style="background-color: #32762A; width: 100%">
 
     <div class="collapse navbar-collapse">
 
     <nav class="navbar bg-white">
 
-        <a class="navbar-brand" href="/main/"><h1>Python tutorial</h1></a>
+        <a class="navbar-brand" href="/main/"><h1 style="color: #331958">Python tutorial</h1></a>
     </nav>
 
     <nav class="navbar navbar-default">
@@ -80,55 +82,35 @@
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-light" type="submit">Search</button>
             </form>
-
         </div>
     </nav>
+    </div>
+</header>
+<div style='width: 150px; top: 164px;' class="position_fixed">
+
+    <div class="vertical-menu">
+
+            <a class="nav-link active" href="/lesson/0">Install Python</a>
+
+            <a class="nav-link " href="/lesson/1">Lesson 1</a>
+
+            <a class="nav-link" href="/lesson/2">Lesson 2</a>
+
+            <a class="nav-link" href="/lesson/3">Lesson 3</a>
+
+            <a class="nav-link" href="#">Lesson 4</a>
+
+            <a class="nav-link" href="#">Lesson 5</a>
+
+            <a class="nav-link" href="#">Lesson 6</a>
+
+            <a class="nav-link" href="#">Lesson 7</a>
 
     </div>
-
-</header>
-<div style='width: 200px'>
-
-    <ul class="nav">
-
-        <li class="nav-item">
-            <a class="nav-link active" href="/installpython">Install Python</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link active" href="/lesson1">Lesson 1</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="/lesson2">Lesson 2</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="/lesson3">Lesson 3</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">Lesson 4</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">Lesson 5</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">Lesson 6</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="#">Lesson 7</a>
-        </li>
-
-    </ul>
-
 </div>
-
-{% block content %}{% endblock %}
-
+<div class="container" style="top: 164px;">
+    {% block content %}{% endblock %}
+</div>
 </body>
 
 </html>
