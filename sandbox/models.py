@@ -10,3 +10,8 @@ class BuiltInFunction(models.Model):
 class UserFeature(models.Model):
     level = models.IntegerField(default=1)
     user = models.OneToOneField(User, on_delete='CASCADE')
+
+
+class Exams(models.Model):
+    task = models.CharField(max_length=512)
+    answer = models.CharField(max_length=512)

@@ -5,88 +5,78 @@
 
     <meta charset="UTF-8">
     <title>Python tutorial</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/sandbox/static/style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="sandbox/static/js.js"></script>
-
 
 </head>
 
 <body>
+    <div>
 
-<header class="position_fixed" style="background-color: #32762A; width: 100%">
+        <a href="/main/"><h1>Python tutorial</h1></a>
 
-    <div class="collapse navbar-collapse">
+        <div class="nav_css">
+            <ul class="nav">
 
-    <nav class="navbar bg-white">
-
-        <a class="navbar-brand" href="/main/"><h1 style="color: #331958">Python tutorial</h1></a>
-    </nav>
-
-    <nav class="navbar navbar-default">
-
-        <div class="container-fluid">
-
-            <div class="navbar-header">
-
-                <a class="navbar-brand" href="/home/">Home</a>
-
-            </div>
-
-            <ul class="nav navbar-nav">
-
-                <li class="nav-item"><a href="#">Start</a></li>
-
-                <li class="nav-item"><a href="#">Quiz</a></li>
-
-                <!-- login and logout -->
-                <li id="login" class="nav-item"><a href="/login/">Login</a></li>
-
-                <li id="logout" class="nav-item"><a href="/logout/">Logout</a></li>
-
-                <li class="nav-item"><a href="/register/">Register</a></li>
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button"
-                       aria-expanded="false" aria-haspopup="true"> Library </a>
-
-                    <div class="dropdown-menu" aria-labelledby="submenu">
-
-                        <a class="dropdown-item" href="/built-in-function/">Built-in-Function</a>
-
-                        <a class="dropdown-item" href="#">String Methods</a>
-
-                        <a class="dropdown-item" href="#">List Methods</a>
-
-                        <a class="dropdown-item" href="#">Dictionary Methods</a>
-
-                        <a class="dropdown-item" href="#">Tuple Methods</a>
-
-                        <a class="dropdown-item" href="#">Set Methods</a>
-
-                        <a class="dropdown-item" href="#">Keywords</a>
-
-                    </div>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="/home/">Home</a>
                 </li>
 
-            </ul>
-            <form class="form-inline align-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Start</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Quiz</a>
+                </li>
+
+                <!--<li class="nav-item">
+                    <a class="nav-link" href="#"> Library </a>
+
+
+                    <a class="dropdown-item" href="/built-in-function/">Built-in-Function</a>
+
+                    <a class="dropdown-item" href="#">String Methods</a>
+
+                    <a class="dropdown-item" href="#">List Methods</a>
+
+                    <a class="dropdown-item" href="#">Dictionary Methods</a>
+
+                    <a class="dropdown-item" href="#">Tuple Methods</a>
+
+                    <a class="dropdown-item" href="#">Set Methods</a>
+
+                    <a class="dropdown-item" href="#">Keywords</a>
+
+                </li>-->
+
+                <!-- login and logout -->
+                <li class="nav-item" id="login">
+                    <a class="nav-link" href="/login/">Login</a>
+                </li>
+
+                <li class="nav-item" id="logout">
+                    <a class="nav-link" href="/logout/">Logout</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/register/">Register</a>
+                </li>
+
+                <li class="nav-item">
+
+            <form class="form-inline">
 
                 <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-light" type="submit">Search</button>
             </form>
+            </ul>
         </div>
-    </nav>
+
     </div>
-</header>
-<div style='width: 150px; top: 164px;' class="position_fixed">
+<div style='width: 150px; top: 164px; float: left'>
 
     <div class="vertical-menu">
 

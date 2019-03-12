@@ -2,8 +2,8 @@
 {
     background-color: #000;
     color: white;
-    margin: 5px;
-    padding: 5px;
+    margin: 10px;
+    padding: 10px;
 
 }
 .box_shadow
@@ -14,27 +14,13 @@
     margin: 20px 0;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12) !important;
 }
-.position_fixed
+.nav_css
 {
-    position: fixed;
+    background-color: #32762A;
+    color: white;
 }
-.vertical-menu {
-  width: 200px;
-}
+.exam
+{
+    background-color: #d4d4d4;
 
-.vertical-menu a {
-  background-color: #eee;
-  color: black;
-  display: block;
-  padding: 12px;
-  text-decoration: none;
-}
-
-.vertical-menu a:hover {
-  background-color: #ccc;
-}
-
-.vertical-menu a.active {
-  background-color: #32762A;
-  color: white;
 }

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from sandbox.forms import LoginForm, RegisterForm, AddDataForm
+from sandbox.forms import LoginForm, RegisterForm, AddDataForm, AddExamForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from sandbox.models import BuiltInFunction, UserFeature
@@ -86,6 +86,13 @@ class LessonView(View):
         return render(request, 'lessons/lesson{}.html'.format(lesson_number))
 
 
+class ExamView(View):
+
+    def get(self, request, exam_number):
+        exam_number = str(exam_number)
+        return render(request, 'exams/exam{}.html'.format(exam_number))
+
+
 #  -------------------Admin Site--------------------------------
 class AddDataView(View):
 
@@ -102,3 +109,20 @@ class AddDataView(View):
         else:
             message = "Ups! Something gone wrong! Try again."
             return render(request, 'adddata.html', {'message': message})
+
+
+class AddExamView(View):
+
+    def get(self, request):
+        form = AddExamForm()
+        return render(request, 'addexam.html', {'form': form})
+
+    def post(self, request):
+        form = AddExamForm(request.POST)
+        if form.is_valid():
+            form.save()
+            message = "Task has been added."
+            return render(request, 'addexam.html', {"message": message})
+        else:
+            message = "Ups! Something gone wrong! Try again."
+            return render(request, 'addexam.html', {'message': message})

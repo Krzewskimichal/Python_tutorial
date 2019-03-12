@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from sandbox.models import BuiltInFunction
+from sandbox.models import BuiltInFunction, Exams
 
 
 class LoginForm(forms.Form):
@@ -19,3 +19,9 @@ class AddDataForm(ModelForm):
     class Meta:
         model = BuiltInFunction
         fields = ['name', 'definition']
+
+
+class AddExamForm(ModelForm):
+    class Meta:
+        model = Exams
+        fields = ['task', 'answer']

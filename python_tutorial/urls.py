@@ -17,20 +17,22 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView, AddDataView, BuiltInFunctionView, \
-    HomeView, LessonView
+    HomeView, LessonView, ExamView, AddExamView
 
 
 urlpatterns = [
     #  ---------------admin site--------------------------------
     path('admin/', admin.site.urls),
-    url(r'admin/add_data/$', AddDataView.as_view()),
+    url(r'admin/add_data/', AddDataView.as_view()),
+    url(r'admin/add_exam/', AddExamView.as_view()),
+
     #  ----------------main site--------------------------------
     url(r'^login/$', LoginView.as_view()),
     url(r'^main/$', MainSiteView.as_view(), name='main'),
     url(r'^logout/$', logout_view),
     url(r'^register/$', RegisterView.as_view()),
     url(r'^home/$', HomeView.as_view()),
-
+    url(r'^exam/(?P<exam_number>(\d)+)$', ExamView.as_view()),
 
     #  --------------------vertical nav--------------------------
     url(r'^built-in-function/$', BuiltInFunctionView.as_view()),
