@@ -16,15 +16,23 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
-from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView, AddDataView, BuiltInFunctionView, \
-    HomeView, LessonView, ExamView, AddExamView
+from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView, AddBuiltInFunctionView,  \
+    HomeView, LessonView, ExamView, AddExamView, AdminToolsView, BuiltInFunctionView, AddStringMethodsView, \
+    AddListMethodsView, AddDictionaryMethodsView, AddTupleMethodsView, AddSetMethodsView, AddKeywordsView
 
 
 urlpatterns = [
     #  ---------------admin site--------------------------------
     path('admin/', admin.site.urls),
-    url(r'admin/add_data/', AddDataView.as_view()),
+    url(r'admin/add_built_in_function/', AddBuiltInFunctionView.as_view()),
+    url(r'admin/add_string_methods/', AddStringMethodsView.as_view()),
+    url(r'admin/add_list_methods/', AddListMethodsView.as_view()),
+    url(r'admin/add_dictionary-methods/', AddDictionaryMethodsView.as_view()),
+    url(r'admin/add_dictionary-methods/', AddTupleMethodsView.as_view()),
+    url(r'admin/add_set-methods/', AddSetMethodsView.as_view()),
+    url(r'admin/add_keywords/', AddKeywordsView.as_view()),
     url(r'admin/add_exam/', AddExamView.as_view()),
+    url(r'^admin_tools/$', AdminToolsView.as_view()),
 
     #  ----------------main site--------------------------------
     url(r'^login/$', LoginView.as_view()),
@@ -33,6 +41,7 @@ urlpatterns = [
     url(r'^register/$', RegisterView.as_view()),
     url(r'^home/$', HomeView.as_view()),
     url(r'^exam/(?P<exam_number>(\d)+)$', ExamView.as_view()),
+
 
     #  --------------------vertical nav--------------------------
     url(r'^built-in-function/$', BuiltInFunctionView.as_view()),

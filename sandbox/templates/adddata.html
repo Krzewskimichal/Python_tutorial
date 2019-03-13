@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    <form action='' method='post'>
-    {% csrf_token %}
-    {{ data.as_table }}
-    <input type='submit' value='Add'>
-    </form>
+    <h3>Add Data</h3>
+        <a href='/admin/add_built_in_function/'><p><button type="button" class="btn btn-success">Built-in-Function
+        </button><p></a>
+        <a href=admin/add_string_methods/'><p><button type="button" class="btn btn-success">String Methods
+        </button></p></a>
+        <a href='admin/add_list_methods/'><p><button type="button" class="btn btn-success">List Methods
+        </button></p></a>
+        <a href='admin/add_dictionary-methods/'><p><button type="button" class="btn btn-success">Dictionary Methods
+        </button></p></a>
+        <a href=admin/add_dictionary-methods/'><p><button type="button" class="btn btn-success">Tuple Methods
+        </button></p></a>
+        <a href='admin/add_set-methods/'><p><button type="button" class="btn btn-success">Set Methods
+        </button></p></a>
+        <a href='admin/add_exam/'><p><button type="button" class="btn btn-success">Keywords
+        </button></p></a>
 </div>
-    {{ message }}
-    <a href="" ><p>Add data</p></a>
 {% endblock %}

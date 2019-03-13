@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
-from sandbox.models import BuiltInFunction, Exams
+from sandbox.models import BuiltInFunction, Exams, StringMethods, ListMethods, DictionaryMethods, TupleMethods, \
+    Keywords, SetMethods
 
 
 class LoginForm(forms.Form):
@@ -15,9 +16,46 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=256)
 
 
-class AddDataForm(ModelForm):
+#  -------------------add data--------------------------------
+class AddBuiltInFunctionForm(ModelForm):
     class Meta:
         model = BuiltInFunction
+        fields = ['name', 'definition']
+
+
+class AddStringMethodsForm(ModelForm):
+    class Meta:
+        model = StringMethods
+        fields = ['name', 'definition']
+
+
+class AddListMethodsForm(ModelForm):
+    class Meta:
+        model = ListMethods
+        fields = ['name', 'definition']
+
+
+class AddDictionaryMethodsForm(ModelForm):
+    class Meta:
+        model = DictionaryMethods
+        fields = ['name', 'definition']
+
+
+class AddTupleMethodsForm(ModelForm):
+    class Meta:
+        model = TupleMethods
+        fields = ['name', 'definition']
+
+
+class AddSetMethodsForm(ModelForm):
+    class Meta:
+        model = SetMethods
+        fields = ['name', 'definition']
+
+
+class AddKeywordsForm(ModelForm):
+    class Meta:
+        model = Keywords
         fields = ['name', 'definition']
 
 

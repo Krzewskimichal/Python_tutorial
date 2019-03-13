@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Add Tuple Methods</h3>
+<form action='' method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" value="Add"></p>
+</form>
+    {{ message }}
+
+    <a href='/main/'><button class="btn btn-success" type='button'>Main Site</button></a>
+    <a href='/admin_tools/'><button class="btn btn-success" type='button'>Back</button></a>
+    <a href=''><button class="btn btn-success" type='button'>Add more</button></a>
+{% endblock %}

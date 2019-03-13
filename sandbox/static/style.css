@@ -24,3 +24,46 @@
     background-color: #d4d4d4;
 
 }
+body
+{
+	background-color: #2F4467;
+	color: #d4d4d4;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+}
+h1
+{
+    font-size: 36px;
+    font-weight: 400;
+    color: #C0D06F;
+    margin: 20px;
+}
+.jumpers
+{
+	text-align: center;
+}
+.jumpers img
+{
+	width: 100%;
+	height: auto;
+}
+.jumpers p
+{
+	margin-bottom: 30px;
+}
+.jumpers figcaption
+{
+	margin-top: 8px;
+}
+.navbar
+{
+	min-height: 57px;
+}
+.bg-jumpers
+{
+	background-color: #28a745 !important;
+}
+a:link, a:active, a:visited, a:hover
+{
+    color: #000;
+}
