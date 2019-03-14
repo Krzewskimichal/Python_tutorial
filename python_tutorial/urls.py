@@ -17,8 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView, AddBuiltInFunctionView,  \
-    HomeView, LessonView, ExamView, AddExamView, AdminToolsView, BuiltInFunctionView, AddStringMethodsView, \
-    AddListMethodsView, AddDictionaryMethodsView, AddTupleMethodsView, AddSetMethodsView, AddKeywordsView
+    HomeView, LessonView, ExamView, AddExamView, AdminToolsView, AddStringMethodsView, \
+    AddListMethodsView, AddDictionaryMethodsView, AddTupleMethodsView, AddSetMethodsView, AddKeywordsView,  \
+    LibraryView
 
 
 urlpatterns = [
@@ -28,7 +29,7 @@ urlpatterns = [
     url(r'admin/add_string_methods/', AddStringMethodsView.as_view()),
     url(r'admin/add_list_methods/', AddListMethodsView.as_view()),
     url(r'admin/add_dictionary-methods/', AddDictionaryMethodsView.as_view()),
-    url(r'admin/add_dictionary-methods/', AddTupleMethodsView.as_view()),
+    url(r'admin/add_tuple-methods/', AddTupleMethodsView.as_view()),
     url(r'admin/add_set-methods/', AddSetMethodsView.as_view()),
     url(r'admin/add_keywords/', AddKeywordsView.as_view()),
     url(r'admin/add_exam/', AddExamView.as_view()),
@@ -41,9 +42,8 @@ urlpatterns = [
     url(r'^register/$', RegisterView.as_view()),
     url(r'^home/$', HomeView.as_view()),
     url(r'^exam/(?P<exam_number>(\d)+)$', ExamView.as_view()),
-
+    url(r'^library/(?P<element>(\w)+)', LibraryView.as_view()),
 
     #  --------------------vertical nav--------------------------
-    url(r'^built-in-function/$', BuiltInFunctionView.as_view()),
     url(r'^lesson/(?P<lesson_number>(\d)+)$', LessonView.as_view()),
 ]

@@ -4,7 +4,8 @@ from sandbox.forms import LoginForm, RegisterForm, AddBuiltInFunctionForm, AddSt
     AddListMethodsForm, AddDictionaryMethodsForm, AddKeywordsForm, AddSetMethodsForm, AddTupleMethodsForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from sandbox.models import BuiltInFunction, UserFeature
+from sandbox.models import BuiltInFunction, UserFeature, DictionaryMethods, Keywords, ListMethods, SetMethods, \
+    StringMethods, TupleMethods
 
 
 class LoginView(View):
@@ -73,11 +74,33 @@ class HomeView(View):
         return render(request, 'home.html')
 
 
-class BuiltInFunctionView(View):
+class LibraryView(View):
 
-    def get(self, request):
-        data = BuiltInFunction.objects.all()
-        return render(request, 'built-in-function.html', {'data': data})
+    def get(self, request, element):
+        if element == 'builtinfunction':
+            data = BuiltInFunction.objects.all()
+            return render(request, 'built-in-function.html', {'data': data})
+        elif element == 'stringmethods':
+            data = StringMethods.objects.all()
+            return render(request, 'built-in-function.html', {'data': data})
+        elif element == 'keywords':
+            data = Keywords.objects.all()
+            return render(request, 'built-in-function.html', {'data': data})
+        elif element == 'dictionarymethods':
+            data = DictionaryMethods.objects.all()
+            return render(request, 'built-in-function.html', {'data': data})
+        elif element == 'listmethods':
+            data = ListMethods.objects.all()
+            return render(request, 'built-in-function.html', {'data': data})
+        elif element == 'tuplemethods':
+            data = TupleMethods.objects.all()
+            return render(request, 'built-in-function.html', {'data': data})
+        elif element == 'setmethods':
+            data = SetMethods.objects.all()
+            return render(request, 'built-in-function.html', {'data': data})
+        else:
+            error = 'Error'
+            return render(request, 'error.html', {'error': error})
 
 
 class LessonView(View):
