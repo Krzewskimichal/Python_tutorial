@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Add Dictionary Methods</h3>
+    {% if form %}
 <form action='' method='post'>
     {% csrf_token %}
     {{ form.as_p }}
     <p><input type="submit" value="Add"></p>
+    {% endif %}
 </form>
     {{ message }}
 

@@ -45,3 +45,13 @@ class SetMethods(models.Model):
 class Keywords(models.Model):
     name = models.CharField(max_length=128)
     definition = models.TextField()
+
+
+class Library(models.Model):
+    stringmethods = models.ForeignKey(StringMethods, on_delete='CASCADE')
+    listmethods = models.ForeignKey(ListMethods, on_delete='CASCADE')
+    dictionarymethosd = models.ForeignKey(DictionaryMethods, on_delete='CASCADE')
+    tuplemethods = models.ForeignKey(TupleMethods, on_delete='CASCADE')
+    setmethods = models.ForeignKey(SetMethods, on_delete='CASCADE')
+    keywords = models.ForeignKey(Keywords, on_delete='CASCADE')
+    builtinfunction = models.ForeignKey(BuiltInFunction, on_delete='CASCADE')

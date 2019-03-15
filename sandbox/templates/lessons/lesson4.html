@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+
+    <div>
+
+        <h3>Specify a Variable Type</h3>
+
+        <p>There may be times when you want to specify a type on to a variable. This can be done with casting.
+            Python is an object-orientated language, and as such it uses classes to define data types, including
+            its primitive types.<br>
+            Casting in python is therefore done using constructor functions:</p>
+
+        <ul>
+            <li>int() - constructs an integer number from an integer literal, a float literal (by rounding down to t
+                he previous whole number), or a string literal (providing the string represents a whole number)</li>
+            <li>float() - constructs a float number from an integer literal, a float literal or a string literal
+                (providing the string represents a float or an integer)</li>
+            <li>str() - constructs a string from a wide variety of data types, including strings,
+                integer literals and float literals</li>
+        </ul>
+
+        <div class="box_shadow">
+
+            <h3>Example</h3>
+
+            <p>Integers:</p>
+
+            <p style="background-color: white; padding: 10px;">x = int(2)<br> y = int("3")<br>z = int(8.4)<br>print(x)<br>print(y)<br>print(z)</p>
+
+        </div>
+
+        <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+                2<br>3<br>8</p>
+
+        <div class="box_shadow">
+
+            <h3>Example</h3>
+
+            <p>Floats:</p>
+
+            <p style="background-color: white; padding: 10px;">x = float(2)<br> y = float("3")<br>z = float(8.4)<br>print(x)<br>print(y)<br>print(z)</p>
+
+        </div>
+
+        <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+                2.0<br>3.0<br>8.4</p>
+
+        <div class="box_shadow">
+
+            <h3>Example</h3>
+
+            <p>Strings:</p>
+
+            <p style="background-color: white; padding: 10px;">x = int(2)<br> y = int("3")<br>z = int(8.4)<br>print(x)<br>print(y)<br>print(z)</p>
+
+        </div>
+
+        <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+                s1<br>2<br>3.0</p>
+        # lol
+        <div>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;">x = str("s1")<br> y = str(2)<br>z = ste(3.0)<br>print(x)<br>print(y)<br>print(z)</p>
+
+            </div>
+
+            <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+                    s1<br>2,br>3.0</p>
+
+        </div>
+    </div>
+    <a href="/exam/4"><button>Exam</button></a>
+    <a href='/lesson/3'><button class="btn" type='button'>Previous</button></a>
+    <a href='/lesson/5'><button class="btn" type='button'>Next</button></a>
+</div>
+{% endblock %}

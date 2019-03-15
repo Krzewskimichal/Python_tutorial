@@ -63,3 +63,12 @@ class AddExamForm(ModelForm):
     class Meta:
         model = Exams
         fields = ['task', 'answer']
+
+
+class DeleteDataForm(forms.Form):
+    databases = (('BuiltInFunction', BuiltInFunction),
+                 ('DictionaryMethods', DictionaryMethods),
+                 ('ListMethods', ListMethods),
+                 )
+
+    database = forms.ChoiceField(choices=databases)

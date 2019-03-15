@@ -1,4 +1,100 @@
 {% extends 'base.html' %}
 {% block content %}
-lesson 3
+
+<div class="container">
+
+    <div>
+        <h3>Python Numbers</h3>
+
+        <p>There are three numeric types in Python:</p>
+
+        <ul>
+
+            <li>int</li>
+            <li>float</li>
+            <li>complex</li>
+
+        </ul>
+
+        <p>Variables of numeric types are created when you assign a value to them:</p>
+
+        <div class="box_shadow">
+
+            <h3>Example</h3>
+
+            <p style="background-color: white; padding: 10px;">x = 2  #  int<br> y = 4.8  #  float<br>
+                z = 4j  #  complex</p>
+
+        </div>
+
+        <p>To verify the type of any object in Python, use the type() function:</p>
+
+        <div class="box_shadow">
+
+            <h3>Example</h3>
+
+            <p style="background-color: white; padding: 10px;">print(type(x))<br>print(type(y))<br>print(type(z))</p>
+
+        </div>
+
+        <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+        &lt;class 'int'><br>&lt;class 'float'><br>&lt;class 'complex'></p>
+
+        <p>Int</p>
+
+        <p>Int, or integer, is a whole number, positive or negative, without decimals, of unlimited length.</p>
+
+        <div class="box_shadow">
+
+            <h3>Example</h3>
+
+            <p>Integers:</p>
+
+            <p style="background-color: white; padding: 10px;">x = 12<br> y = 312312543<br>z = -21312343<br>print(x)<br>print(y)<br>print(z)</p>
+
+        </div>
+        <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+                &lt;class 'int'><br>&lt;class 'int'><br>&lt;class 'int'></p>
+
+        <h3>Float</h3>
+
+        <p>Float, or "floating point number" is a number, positive or negative, containing one or more decimals.</p>
+
+        <div class="box_shadow">
+
+            <h3>Example</h3>
+
+            <p>Floats:</p>
+
+            <p style="background-color: white; padding: 10px;">x = 2.2<br> y = 3.0<br>z = -21312343.32<br>print(x)<br>print(y)<br>print(z)</p>
+
+        </div>
+
+        <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+                &lt;class 'float'><br>&lt;class 'float'><br>&lt;class 'float'></p>
+
+        <h3>Complex</h3>
+
+        <p>Complex numbers are written with a "j" as the imaginary part:</p>
+
+        <div class="box_shadow">
+
+            <h3>Example</h3>
+
+            <p>Complexs:</p>
+
+            <p style="background-color: white; padding: 10px;">x = 2 + 3j<br> y = 3j<br>z = -12j<br>print(x)<br>print(y)<br>print(z)</p>
+
+        </div>
+
+        <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+                &lt;class 'complex'><br>&lt;class 'complex'><br>&lt;class 'complex'></p>
+
+
+    </div>
+
+    <a href="/exam/3"><button>Exam</button></a>
+    <a href='/lesson/2'><button class="btn" type='button'>Previous</button></a>
+    <a href='/lesson/4'><button class="btn" type='button'>Next</button></a>
+</div>
 {% endblock %}

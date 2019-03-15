@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if form %}
+    <form action='' method='post'>
+    {% csrf_token %}
+    {{ form }}
+    <input type='submit' value='Select'>
+    </form>
+    {% endif %}
+    {% if data %}
+         <h3>Delete {{ data }}</h3>
+            {{ data }}
+    {% endif %}
+{% endblock %}

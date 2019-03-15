@@ -67,3 +67,16 @@ a:link, a:active, a:visited, a:hover
 {
     color: #000;
 }
+.login
+{
+    text-align: center;
+    padding: 10%;
+    font-size: 25px;
+}
+.login_header
+{
+    text-align: center;
+    margin: auto;
+    padding: auto;
+    font-size: 70px
+}

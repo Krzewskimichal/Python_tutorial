@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
     <h3>Add Built-in-Function</h3>
+    {% if form %}
 <form action='' method='post'>
     {% csrf_token %}
     {{ form.as_p }}
     <p><input type="submit" value="Add"></p>
 </form>
+    {% endif %}
     {{ message }}
 
     <a href='/main/'><button class="btn btn-success" type='button'>Main Site</button></a>

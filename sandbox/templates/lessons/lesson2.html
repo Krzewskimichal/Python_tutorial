@@ -1,4 +1,122 @@
 {% extends 'base.html' %}
 {% block content %}
-lesson 2
+
+ <div class="container">
+        <div>
+
+            <h3>Creating Variables</h3>
+
+            <p>Unlike other programming languages, Python has no command for declaring a variable.</p>
+
+            <p>A variable is created the moment you first assign a value to it.</p>
+
+        </div>
+        <div>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;">x = 8<br> y = "John"<br>print(x)<br>print(y)</p>
+
+            </div>
+
+            <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
+                    8<br>John </p>
+
+            <p>Variables do not need to be declared with any particular type and can even change
+                type after they have been set.</p>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;">x = 2  #  x is of type int<br> x = "Heniek"  # x is now of type str<br>print(x)<br>
+                    print(type(x))</p>
+
+            </div>
+
+                <p class='terminal_command' style='padding: 10px;'>C:\Users\My Name>python python_tutorial.py<br>
+                Heniek<br>
+                &lt;class 'str'></p>
+
+        </div>
+        <div>
+
+            <h3>Variable Names</h3>
+
+            <p>A variable can have a short name (like x and y) or a more descriptive name
+                (age, carname, total_volume). Rules for Python variables: </p>
+
+            <ul>
+                <li>A variable name must start with a letter or the underscore character</li>
+                <li>A variable name cannot start with a number</li>
+                <li>A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )</li>
+                <li>Variable names are case-sensitive (age, Age and AGE are three different variables)</li>
+            </ul>
+
+            <p>Remember that variables are case-sensitive!</p>
+
+            <h3>Output Variables</h3>
+
+            <p>The Python print statement is often used to output variables.</p>
+
+            <p>To combine both text and a variable, Python uses the + character:</p>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;">x = "Michal"<br>print(x + " is awesome")</p>
+
+            </div>
+
+            <p class="terminal_command" style="padding: 10px;">C:\Users\My Name>python python_tutorial.py<br>
+                Michal is awesome</p>
+
+            <p>You can also use the + character to add a variable to another variable:</p>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;">x = "The definition of madness is "<br>
+                y = "do the same and expect different results"<br> z = x + y<br>print(z)</p>
+
+            </div>
+
+            <p class="terminal_command" style="padding: 10px;">C:\Users\My Name>python python_tutorial.py<br>
+            The definition of madness is do the same and expect different results</p>
+
+            <p>For numbers, the + character works as a mathematical operator:</p>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;">x = 2<br> y = 5<br>print(x + y)</p>
+
+            </div>
+
+            <p class="terminal_command" style="padding: 10px;">C:\Users\My Name>python python_tutorial.py<br>
+            7</p>
+
+            <p>If you try to combine a string and a number, Python will give you an error:</p>
+
+            <div class="box_shadow">
+
+                <h3>Example</h3>
+
+                <p style="background-color: white; padding: 10px;">x = 9<br> y = "Jane"</p>
+
+            </div>
+
+            <p class="terminal_command" style="padding: 10px;">C:\Users\My Name>python python_tutorial.py<br>
+            TypeError: unsupported operand type(s) for +: 'int' and 'str'</p>
+
+        </div>
+        <a href="/exam/2"><button>Exam</button></a>
+         <a href='/lesson/1'><button class="btn" type='button'>Previous</button></a>
+         <a href='/lesson/3'><button class="btn" type='button'>Next</button></a>
+    </div>
 {% endblock %}

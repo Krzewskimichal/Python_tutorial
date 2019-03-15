@@ -19,7 +19,7 @@ from django.urls import path
 from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView, AddBuiltInFunctionView,  \
     HomeView, LessonView, ExamView, AddExamView, AdminToolsView, AddStringMethodsView, \
     AddListMethodsView, AddDictionaryMethodsView, AddTupleMethodsView, AddSetMethodsView, AddKeywordsView,  \
-    LibraryView
+    LibraryView, SearchView, DeleteDataView
 
 
 urlpatterns = [
@@ -34,16 +34,17 @@ urlpatterns = [
     url(r'admin/add_keywords/', AddKeywordsView.as_view()),
     url(r'admin/add_exam/', AddExamView.as_view()),
     url(r'^admin_tools/$', AdminToolsView.as_view()),
+    url(r'^admin/delete_data/$', DeleteDataView.as_view()),
 
     #  ----------------main site--------------------------------
-    url(r'^login/$', LoginView.as_view()),
+    url(r'^start/$', LoginView.as_view()),
     url(r'^main/$', MainSiteView.as_view(), name='main'),
     url(r'^logout/$', logout_view),
     url(r'^register/$', RegisterView.as_view()),
     url(r'^home/$', HomeView.as_view()),
     url(r'^exam/(?P<exam_number>(\d)+)$', ExamView.as_view()),
     url(r'^library/(?P<element>(\w)+)', LibraryView.as_view()),
-
+    url(r'^search/$', SearchView.as_view()),
     #  --------------------vertical nav--------------------------
     url(r'^lesson/(?P<lesson_number>(\d)+)$', LessonView.as_view()),
 ]

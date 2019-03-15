@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class='table'>
+            <tr>
+                <th>Function</th>
+                <th>Definition</th>
+            </tr>
+                {% for i in result %}
+                    {% for z in i %}
+            <tr>
+                <td>{{ z.name }}</td>
+                <td>{{ z.definition }}</td>
+            </tr>
+                        {% endfor %}
+                {% endfor %}
+    </table>
+    {% if error %}
+    {{ error.as_p }}
+    {% endif %}
+<p><a href=/main/><button class='btn' type='button'>Main menu</button></a></p>
+{% endblock %}

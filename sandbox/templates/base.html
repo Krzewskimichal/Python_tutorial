@@ -41,7 +41,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Start</a>
+                    <a class="nav-link" href="/lesson/0">Start</a>
                 </li>
 
                 <li class="nav-item">
@@ -65,17 +65,6 @@
                     </div>
 
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link Disabled" href="/login/"> Login </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout/"> Logout </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/register/">Register</a>
-                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="/admin_tools/">Admin Tools</a>
@@ -83,13 +72,17 @@
 
             </ul>
 
-            <form class="form-inline">
-
-                <input class="form-control mr-1" type="search" placeholder="Search" aria-label="Wyszukaj">
+            <form class="form-inline" action="/search/" method='post'>
+                {% csrf_token %}
+                <input name="lol" class="form-control mr-1" type="search" placeholder="Search" aria-label="Wyszukaj">
                 <button class="btn btn-light" type="submit">Search</button>
-
             </form>
 
+            <ul class="navbar-nav mr-right">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout/"> Logout </a>
+            </li>
+            </ul>
         </div>
 
     </nav>
@@ -107,13 +100,13 @@
 
             <a class="nav-link" href="/lesson/3">Lesson 3</a>
 
-            <a class="nav-link" href="#">Lesson 4</a>
+            <a class="nav-link" href="/lesson/4">Lesson 4</a>
 
-            <a class="nav-link" href="#">Lesson 5</a>
+            <a class="nav-link" href="/lesson/5">Lesson 5</a>
 
-            <a class="nav-link" href="#">Lesson 6</a>
+            <a class="nav-link" href="/lesson/6">Lesson 6</a>
 
-            <a class="nav-link" href="#">Lesson 7</a>
+            <a class="nav-link" href="/lesson/7">Lesson 7</a>
 
     </div>
 </div>

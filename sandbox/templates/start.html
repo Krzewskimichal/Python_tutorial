@@ -21,24 +21,22 @@
 <h1 class="bg-jumpers login_header">Python Tutorial</h1>
 <div class="login">
 
-    <h1>Register</h1>
-<form action='' method='post'>
+<form action="" method='post'>
     {% csrf_token %}
-    {{ form.as_p }}
-<input type="submit" value="Register">
+{{ form.as_p }}
+    <input type="submit" value="Login">
 </form>
-
  {% for message in messages %}
 
-    <div class="alert alert-success">
-        <a class="close" href="#" data-dismiss="alert">×</a>
+                    <div class="alert alert-success">
+                        <a class="close" href="#" data-dismiss="alert">×</a>
 
-        {{ message }}
+                        {{ message }}
 
-    </div>
- {% endfor %}
-{{ error }}
-    <a href=/start/><button class="btn btn-light" type="button">Back</button></a>
+                    </div>
+            {% endfor %}
+<p>Don't have an account yet?</p>
+    <a href=/register/><button class="btn btn-light" type="button">Register now</button></a>
 </div>
 </body>
 </html>
