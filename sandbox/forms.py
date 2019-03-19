@@ -66,9 +66,9 @@ class AddExamForm(ModelForm):
 
 
 class DeleteDataForm(forms.Form):
-    databases = (('BuiltInFunction', BuiltInFunction),
-                 ('DictionaryMethods', DictionaryMethods),
-                 ('ListMethods', ListMethods),
+    databases = (('BuiltInFunction', BuiltInFunction.__name__),
+                 ('DictionaryMethods', DictionaryMethods.__name__),
+                 ('ListMethods', ListMethods.__name__),
                  )
 
     database = forms.ChoiceField(choices=databases)

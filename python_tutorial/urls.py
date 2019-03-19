@@ -19,7 +19,7 @@ from django.urls import path
 from sandbox.views import LoginView, MainSiteView, logout_view, RegisterView, AddBuiltInFunctionView,  \
     HomeView, LessonView, ExamView, AddExamView, AdminToolsView, AddStringMethodsView, \
     AddListMethodsView, AddDictionaryMethodsView, AddTupleMethodsView, AddSetMethodsView, AddKeywordsView,  \
-    LibraryView, SearchView, DeleteDataView
+    LibraryView, SearchView, DeleteDataView, DeleteRedirectView, UserView
 
 
 urlpatterns = [
@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'admin/add_exam/', AddExamView.as_view()),
     url(r'^admin_tools/$', AdminToolsView.as_view()),
     url(r'^admin/delete_data/$', DeleteDataView.as_view()),
+    url(r'^admin/delete_data/redirect/$', DeleteRedirectView.as_view()),
 
     #  ----------------main site--------------------------------
     url(r'^start/$', LoginView.as_view()),
@@ -45,6 +46,8 @@ urlpatterns = [
     url(r'^exam/(?P<exam_number>(\d)+)$', ExamView.as_view()),
     url(r'^library/(?P<element>(\w)+)', LibraryView.as_view()),
     url(r'^search/$', SearchView.as_view()),
+    url(r'^user/$', UserView.as_view()),
+
     #  --------------------vertical nav--------------------------
     url(r'^lesson/(?P<lesson_number>(\d)+)$', LessonView.as_view()),
 ]

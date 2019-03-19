@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 from sandbox.forms import LoginForm, RegisterForm, AddBuiltInFunctionForm, AddStringMethodsForm, AddExamForm,\
     AddListMethodsForm, AddDictionaryMethodsForm, AddKeywordsForm, AddSetMethodsForm, AddTupleMethodsForm,  \
     DeleteDataForm
@@ -9,6 +11,8 @@ from sandbox.models import BuiltInFunction, UserFeature, DictionaryMethods, Keyw
     StringMethods, TupleMethods
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.mail import send_mail
+from django.apps import apps
 
 
 class LoginView(View):
@@ -63,8 +67,17 @@ class RegisterView(View):
             if password1 == password2:
                 Lol = User.objects.create_user(username=username, password=password1, email=email)
 
-                UserFeature.objects.create(user_id=Lol.id)
-
+                send_mail(
+                    'Python tutorial',
+                    'Thank you for registering',
+                    'pythontutorial@gmail.com',
+                    [email],
+                    fail_silently=False,
+                )
+                user = authenticate(username=username, password=password1)
+                if user.is_active:
+                    login(request, user)
+                    request.session['logged'] = True
                 return redirect('/main/')
         else:
             error = "Passwords are not the same!"
@@ -131,23 +144,37 @@ class SearchView(LoginRequiredMixin, View):
     def post(self, request):
         result = []
         lol = request.POST.get('lol')
-        if BuiltInFunction.objects.filter(name=lol):
-            result.append(BuiltInFunction.objects.filter(name=lol))
-        elif DictionaryMethods.objects.filter(name=lol):
-            result.append(DictionaryMethods.objects.filter(name=lol))
-        elif Keywords.objects.filter(name=lol):
-            result.append(Keywords.objects.filter(name=lol))
-        elif ListMethods.objects.filter(name=lol):
-            result.append(ListMethods.objects.filter(name=lol))
-        elif SetMethods.objects.filter(name=lol):
-            result.append(SetMethods.objects.filter(name=lol))
-        elif StringMethods.objects.filter(name=lol):
-            result.append(StringMethods.objects.filter(name=lol))
-        elif TupleMethods.objects.filter(name=lol):
-            result.append(TupleMethods.objects.filter(name=lol))
+        if BuiltInFunction.objects.filter(name__iexact=lol):
+            result.append(BuiltInFunction.objects.filter(name__iexact=lol))
+        elif DictionaryMethods.objects.filter(name__iexact=lol):
+            result.append(DictionaryMethods.objects.filter(name__iexact=lol))
+        elif Keywords.objects.filter(name__iexact=lol):
+            result.append(Keywords.objects.filter(name__iexact=lol))
+        elif ListMethods.objects.filter(name__iexact=lol):
+            result.append(ListMethods.objects.filter(name__iexact=lol))
+        elif SetMethods.objects.filter(name__iexact=lol):
+            result.append(SetMethods.objects.filter(name__iexact=lol))
+        elif StringMethods.objects.filter(name__iexact=lol):
+            result.append(StringMethods.objects.filter(name__iexact=lol))
+        elif TupleMethods.objects.filter(name__iexact=lol):
+            result.append(TupleMethods.objects.filter(name__iexact=lol))
         else:
             return render(request, 'search.html', {'error': 'No item match your search'})
         return render(request, 'search.html', {'result': result})
+
+
+class UserView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        id = request.user.id
+        name = request.user.username
+        email = request.user.email
+        date = request.user.date_joined
+        level = UserFeature.objects.filter(user=id)
+        return render(request, 'user.html', {'name': name,
+                                             'email': email,
+                                             'date': date,
+                                             'level': level})
 
 
 #  -------------------Admin Site--------------------------------
@@ -166,11 +193,30 @@ class DeleteDataView(PermissionRequiredMixin, View):
         return render(request, 'add_data/deletedata.html', {'form': form})
 
     def post(self, request):
-        form = DeleteDataForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data['database']
+        form = DeleteDataForm()
+        delete = DeleteDataForm(request.POST)
+        if delete.is_valid():
+            lol = delete.cleaned_data['database']
+            model = apps.get_model("sandbox", lol)
+            data = model.objects.all()
+            databasename = model.__name__
+            return render(request, 'add_data/deletedata.html', {'data': data,
+                                                                'form': form,
+                                                                'databasename': databasename})
 
-            return render(request, 'add_data/deletedata.html', {'data': data})
+
+class DeleteRedirectView(PermissionRequiredMixin, View):
+    permission_required = 'auth.can_add_group'
+
+    def post(self, request):
+        data = request.POST.get('delete')
+
+        if data == None:
+            return render(request, "error.html", {'error': data})
+        databasename = request.POST.get('databasename')
+        databasename = apps.get_model("sandbox", databasename)
+        databasename.objects.filter(pk=data).delete()
+        return redirect('/admin/delete_data/')
 
 
 class AddBuiltInFunctionView(PermissionRequiredMixin, View):

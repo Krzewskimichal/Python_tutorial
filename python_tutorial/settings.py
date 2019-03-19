@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'sandbox',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,18 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/start/'
+
+#  -----------------email-------------------------
+EMAIL_HOST = 'localhost'
+
+EMAIL_PORT = 25
+
+EMAIL_HOST_USER = ''
+
+EMAIL_HOST_PASSWORD = ''
+
+EMAIL_USE_TLS = False
+
+#  --------------------Only for testing, after delete---------------------------------------
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

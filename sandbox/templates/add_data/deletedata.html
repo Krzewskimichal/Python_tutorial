@@ -1,14 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% if form %}
+<div class="container">
     <form action='' method='post'>
     {% csrf_token %}
     {{ form }}
     <input type='submit' value='Select'>
     </form>
-    {% endif %}
-    {% if data %}
-         <h3>Delete {{ data }}</h3>
-            {{ data }}
-    {% endif %}
+
+</div>
+<div class="container" id="table">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th><th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for i in data %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.definition }}</td>
+                <td><form method="post" action="/admin/delete_data/redirect/"> {% csrf_token %}
+                    <input name="databasename" value="{{ databasename }}" hidden>
+                    <button type="submit" value="{{ i.id }}" name="delete">Delete</button></form></td>
+            <tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="/sandbox/static/delete.js"></script>
 {% endblock %}
