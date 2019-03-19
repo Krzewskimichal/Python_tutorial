@@ -128,27 +128,43 @@ class LessonView(LoginRequiredMixin, View):
 
     def get(self, request, lesson_number):
         lesson_number = str(lesson_number)
-        return render(request, 'lessons/lesson{}.html'.format(lesson_number))
+        return render(request, 'lessons/lesson{}.html'.format(lesson_number), {'lesson_number': lesson_number})
+
+    def post(self, request, lesson_number):
+        lesson_number = request.POST.get('lesson_number')
+        request.session['lesson_number'] = lesson_number
+        return redirect("/exam/")
 
 
 class ExamView(LoginRequiredMixin, View):
 
     def get(self, request):
-        exam = Exams.objects.filter(pk=1)
-        return render(request, 'exams/exam1.html', {'exam': exam})
+        if 'lesson_number' in request.session:
+            number = request.session['lesson_number']
+            print(number)
+
+            exam = Exams.objects.filter(pk=number)
+            return render(request, 'exams/exam1.html', {'exam': exam})
 
     def post(self, request):
-        answer = request.POST.get('answer')
-        exam = Exams.objects.filter(pk=1).first()
-        user_id = request.user.id
-        user = UserFeature.objects.filter(user_id=user_id).first()
-        if answer == exam.answer:
-            if user.level <= exam.lesson:
-                user.level += 1
-                user.save()
-            return render(request, 'error.html', {'error': "Good"})
-        else:
-            return render(request, 'error.html', {'error': "Wrong"})
+        if 'lesson_number' in request.session:
+            number = request.session['lesson_number']
+
+            answer = request.POST.get('answer')
+            exam = Exams.objects.filter(pk=number).first()
+            user_id = request.user.id
+            user = UserFeature.objects.filter(user_id=user_id).first()
+            if answer == exam.answer:
+                if user.level <= exam.lesson:
+                    user.level += 1
+                    user.save()
+                number = int(number) + 1
+                request.session['lesson_number'] = number
+                return render(request, 'error.html', {'exam': "Good",
+                                                      'lesson_number': number})
+            else:
+                return render(request, 'error.html', {'exam': "Wrong",
+                                                      'lesson_number': number})
 
 
 class SearchView(LoginRequiredMixin, View):

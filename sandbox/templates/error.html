@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 {{ error }}
+    {% if exam %}
+        {{ exam }}
+        <p><a href="/lesson/{{ lesson_number }}"><button>Continue</button></a></p>
+    {% endif %}
 {% endblock %}

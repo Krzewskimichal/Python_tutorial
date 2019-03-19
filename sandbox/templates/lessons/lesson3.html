@@ -93,7 +93,10 @@
 
     </div>
 
-    <a href="/exam/3"><button>Exam</button></a>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" name="lesson_number" value="{{ lesson_number }}">Exam</button>
+    </form>
     <a href='/lesson/2'><button class="btn" type='button'>Previous</button></a>
     <a href='/lesson/4'><button class="btn" type='button'>Next</button></a>
 </div>
