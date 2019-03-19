@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% if form %}
     <h3>Add exam</h3>
     <form method="post" action="">
     {% csrf_token %}
     {{ form.as_p }}
     <input type='submit' value="add">
     </form>
+    {% endif %}
     {{ message }}
 {% endblock %}

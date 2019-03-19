@@ -15,6 +15,7 @@ class UserFeature(models.Model):
 class Exams(models.Model):
     task = models.CharField(max_length=512)
     answer = models.CharField(max_length=512)
+    lesson = models.SmallIntegerField(default=1)
 
 
 class StringMethods(models.Model):

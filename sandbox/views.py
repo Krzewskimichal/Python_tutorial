@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.decorators.csrf import ensure_csrf_cookie
-
 from sandbox.forms import LoginForm, RegisterForm, AddBuiltInFunctionForm, AddStringMethodsForm, AddExamForm,\
     AddListMethodsForm, AddDictionaryMethodsForm, AddKeywordsForm, AddSetMethodsForm, AddTupleMethodsForm,  \
     DeleteDataForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from sandbox.models import BuiltInFunction, UserFeature, DictionaryMethods, Keywords, ListMethods, SetMethods, \
-    StringMethods, TupleMethods
+    StringMethods, TupleMethods, Exams
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.mail import send_mail
@@ -66,7 +64,6 @@ class RegisterView(View):
             email = form.cleaned_data['email']
             if password1 == password2:
                 Lol = User.objects.create_user(username=username, password=password1, email=email)
-
                 send_mail(
                     'Python tutorial',
                     'Thank you for registering',
@@ -75,9 +72,11 @@ class RegisterView(View):
                     fail_silently=False,
                 )
                 user = authenticate(username=username, password=password1)
+
                 if user.is_active:
                     login(request, user)
                     request.session['logged'] = True
+                    UserFeature.objects.create(user_id=request.user.id)
                 return redirect('/main/')
         else:
             error = "Passwords are not the same!"
@@ -134,9 +133,22 @@ class LessonView(LoginRequiredMixin, View):
 
 class ExamView(LoginRequiredMixin, View):
 
-    def get(self, request, exam_number):
-        exam_number = str(exam_number)
-        return render(request, 'exams/exam{}.html'.format(exam_number))
+    def get(self, request):
+        exam = Exams.objects.filter(pk=1)
+        return render(request, 'exams/exam1.html', {'exam': exam})
+
+    def post(self, request):
+        answer = request.POST.get('answer')
+        exam = Exams.objects.filter(pk=1).first()
+        user_id = request.user.id
+        user = UserFeature.objects.filter(user_id=user_id).first()
+        if answer == exam.answer:
+            if user.level <= exam.lesson:
+                user.level += 1
+                user.save()
+            return render(request, 'error.html', {'error': "Good"})
+        else:
+            return render(request, 'error.html', {'error': "Wrong"})
 
 
 class SearchView(LoginRequiredMixin, View):
@@ -170,11 +182,9 @@ class UserView(LoginRequiredMixin, View):
         name = request.user.username
         email = request.user.email
         date = request.user.date_joined
-        level = UserFeature.objects.filter(user=id)
         return render(request, 'user.html', {'name': name,
                                              'email': email,
-                                             'date': date,
-                                             'level': level})
+                                             'date': date})
 
 
 #  -------------------Admin Site--------------------------------

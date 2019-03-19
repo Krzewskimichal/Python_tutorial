@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^logout/$', logout_view),
     url(r'^register/$', RegisterView.as_view()),
     url(r'^home/$', HomeView.as_view()),
-    url(r'^exam/(?P<exam_number>(\d)+)$', ExamView.as_view()),
+    url(r'^exam/$', ExamView.as_view()),
     url(r'^library/(?P<element>(\w)+)', LibraryView.as_view()),
     url(r'^search/$', SearchView.as_view()),
     url(r'^user/$', UserView.as_view()),

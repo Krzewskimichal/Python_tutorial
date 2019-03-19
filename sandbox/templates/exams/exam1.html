@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-exam
     <div class="container">
 
-        <p>Write a comment "This is comment"</p>
+        <p>{{ exam.0.task }}</p>
 
         <div class="container">
 
-
+            <form action="" method="post">
+                {% csrf_token %}
+                <p><label>Write hire: <input name="answer" type="text"></label></p>
+                <p><input type="submit" value="Check"></p>
+            </form>
 
         </div>
 

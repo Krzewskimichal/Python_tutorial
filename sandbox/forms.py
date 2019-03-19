@@ -62,7 +62,7 @@ class AddKeywordsForm(ModelForm):
 class AddExamForm(ModelForm):
     class Meta:
         model = Exams
-        fields = ['task', 'answer']
+        fields = ['task', 'answer', 'lesson']
 
 
 class DeleteDataForm(forms.Form):
