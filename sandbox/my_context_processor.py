@@ -12,9 +12,15 @@ def get_level(request):
     return user.level if user else 1
 
 
+def is_admin(request):
+    if request.user.is_superuser:
+        return True
+
+
 def my_cp(request):
 
     ctx = {
+        'admin': is_admin(request),
         'username': is_logged(request),
         'level': get_level(request),
     }

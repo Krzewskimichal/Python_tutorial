@@ -46,3 +46,11 @@ class SetMethods(models.Model):
 class Keywords(models.Model):
     name = models.CharField(max_length=128)
     definition = models.TextField()
+
+
+class Messenger(models.Model):
+    from_user = models.ForeignKey(User, related_name='+', on_delete="CASCADE")
+    to_user = models.ForeignKey(User, related_name='+', on_delete="CASCADE")
+    time = models.DateTimeField(auto_now_add=True)
+    message = models.TextField(null=True)
+    message_title = models.CharField(max_length=128)

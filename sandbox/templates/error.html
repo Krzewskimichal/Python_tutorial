@@ -3,6 +3,10 @@
 {{ error }}
     {% if exam %}
         {{ exam }}
-        <p><a href="/lesson/{{ lesson_number }}"><button>Continue</button></a></p>
+        <p><a href="/lesson/{{ lesson_number }}"><button class="btt">Continue</button></a></p>
+    {% endif %}
+    {% if message %}
+    {{ message }}
+        <p><a href="/user/"><button class="btt">Back</button></a></p>
     {% endif %}
 {% endblock %}

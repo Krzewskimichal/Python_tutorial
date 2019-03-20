@@ -58,7 +58,6 @@
 
         <p class="terminal_command" style="padding: 10px">C:\Users\My Name>python python_tutorial.py<br>
                 s1<br>2<br>3.0</p>
-        # lol
         <div>
 
             <div class="box_shadow">
@@ -76,9 +75,9 @@
     </div>
     <form action="" method="post">
         {% csrf_token %}
-        <button type="submit" name="lesson_number" value="{{ lesson_number }}">Exam</button>
+        <button class="btt" type="submit" name="lesson_number" value="{{ lesson_number }}">Exam</button><br><br>
     </form>
-    <a href='/lesson/3'><button class="btn" type='button'>Previous</button></a>
-    <a href='/lesson/5'><button class="btn" type='button'>Next</button></a>
+    <a href='/lesson/3'><button class="btt" type='button'>Previous</button></a>
+    <a href='/lesson/5'><button class="btt" type='button'>Next</button></a>
 </div>
 {% endblock %}

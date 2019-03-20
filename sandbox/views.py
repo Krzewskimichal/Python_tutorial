@@ -2,11 +2,11 @@ from django.shortcuts import render, redirect
 from django.views import View
 from sandbox.forms import LoginForm, RegisterForm, AddBuiltInFunctionForm, AddStringMethodsForm, AddExamForm,\
     AddListMethodsForm, AddDictionaryMethodsForm, AddKeywordsForm, AddSetMethodsForm, AddTupleMethodsForm,  \
-    DeleteDataForm
+    DeleteDataForm, UserWriteMessageForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from sandbox.models import BuiltInFunction, UserFeature, DictionaryMethods, Keywords, ListMethods, SetMethods, \
-    StringMethods, TupleMethods, Exams
+    StringMethods, TupleMethods, Exams, Messenger
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.mail import send_mail
@@ -63,7 +63,7 @@ class RegisterView(View):
             password2 = form.cleaned_data['password2']
             email = form.cleaned_data['email']
             if password1 == password2:
-                Lol = User.objects.create_user(username=username, password=password1, email=email)
+                User.objects.create_user(username=username, password=password1, email=email)
                 send_mail(
                     'Python tutorial',
                     'Thank you for registering',
@@ -130,7 +130,7 @@ class LessonView(LoginRequiredMixin, View):
         lesson_number = str(lesson_number)
         return render(request, 'lessons/lesson{}.html'.format(lesson_number), {'lesson_number': lesson_number})
 
-    def post(self, request, lesson_number):
+    def post(self, request):
         lesson_number = request.POST.get('lesson_number')
         request.session['lesson_number'] = lesson_number
         return redirect("/exam/")
@@ -154,7 +154,7 @@ class ExamView(LoginRequiredMixin, View):
             exam = Exams.objects.filter(pk=number).first()
             user_id = request.user.id
             user = UserFeature.objects.filter(user_id=user_id).first()
-            if answer == exam.answer:
+            if answer.strip() == exam.answer:
                 if user.level <= exam.lesson:
                     user.level += 1
                     user.save()
@@ -170,23 +170,21 @@ class ExamView(LoginRequiredMixin, View):
 class SearchView(LoginRequiredMixin, View):
 
     def post(self, request):
+        models = [
+            BuiltInFunction,
+            DictionaryMethods,
+            Keywords,
+            ListMethods,
+            SetMethods,
+            StringMethods,
+            TupleMethods,
+        ]
         result = []
         lol = request.POST.get('lol')
-        if BuiltInFunction.objects.filter(name__iexact=lol):
-            result.append(BuiltInFunction.objects.filter(name__iexact=lol))
-        elif DictionaryMethods.objects.filter(name__iexact=lol):
-            result.append(DictionaryMethods.objects.filter(name__iexact=lol))
-        elif Keywords.objects.filter(name__iexact=lol):
-            result.append(Keywords.objects.filter(name__iexact=lol))
-        elif ListMethods.objects.filter(name__iexact=lol):
-            result.append(ListMethods.objects.filter(name__iexact=lol))
-        elif SetMethods.objects.filter(name__iexact=lol):
-            result.append(SetMethods.objects.filter(name__iexact=lol))
-        elif StringMethods.objects.filter(name__iexact=lol):
-            result.append(StringMethods.objects.filter(name__iexact=lol))
-        elif TupleMethods.objects.filter(name__iexact=lol):
-            result.append(TupleMethods.objects.filter(name__iexact=lol))
-        else:
+        for model in models:
+            result.append(model.objects.filter(name__icontains=lol))
+
+        if not result:
             return render(request, 'search.html', {'error': 'No item match your search'})
         return render(request, 'search.html', {'result': result})
 
@@ -194,13 +192,49 @@ class SearchView(LoginRequiredMixin, View):
 class UserView(LoginRequiredMixin, View):
 
     def get(self, request):
-        id = request.user.id
         name = request.user.username
         email = request.user.email
         date = request.user.date_joined
         return render(request, 'user.html', {'name': name,
                                              'email': email,
                                              'date': date})
+
+
+class UserMessagesView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        data = Messenger.objects.filter(to_user_id=request.user.id)
+        return render(request, 'usermessages.html', {'data': data})
+
+    def post(self, request):
+        message = request.POST.get('message')
+        from_user = request.POST.get('from_user')
+        time = request.POST.get('time')
+        print(message)
+        print(from_user)
+
+        return render(request, 'userreadmessage.html', {'message': message,
+                                                        'from_user': from_user,
+                                                        'time': time})
+
+
+class UserWriteMessageView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        form = UserWriteMessageForm()
+        return render(request, 'userwritemessage.html', {'form': form})
+
+    def post(self, request):
+        data = UserWriteMessageForm(request.POST)
+        if data.is_valid():
+            message = data.cleaned_data['message']
+            to_user = data.cleaned_data['to_user'].id
+            from_user = request.user.id
+            title = data.cleaned_data['message_title']
+            Messenger.objects.create(message=message, from_user_id=from_user, to_user_id=to_user, message_title=title)
+            return render(request, 'error.html', {'message': "Message has been sent"})
+        else:
+            return render(request, 'error.html', {'message': "Ups! Something gone wronge"})
 
 
 #  -------------------Admin Site--------------------------------
@@ -237,7 +271,7 @@ class DeleteRedirectView(PermissionRequiredMixin, View):
     def post(self, request):
         data = request.POST.get('delete')
 
-        if data == None:
+        if data is None:
             return render(request, "error.html", {'error': data})
         databasename = request.POST.get('databasename')
         databasename = apps.get_model("sandbox", databasename)

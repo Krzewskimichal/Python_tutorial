@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>User {{ name }}</h1>
+    <p>
+        <a href="/user/messages/"><button class="btt">Messages</button></a>
+        <a href="/user/write_message/"><button class="btt">Write message</button></a>
+    </p>
     <div class="container">
     <table class="table">
         <thead>

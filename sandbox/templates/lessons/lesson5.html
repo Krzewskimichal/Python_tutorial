@@ -3,8 +3,7 @@
 <div class="container">
 
     <div>
-
-        # lol
+        <h3>lesson 5</h3>
 
             <div class="box_shadow">
 
@@ -21,9 +20,9 @@
     </div>
     <form action="" method="post">
         {% csrf_token %}
-        <button type="submit" name="lesson_number" value="{{ lesson_number }}">Exam</button>
+        <button class="btt" type="submit" name="lesson_number" value="{{ lesson_number }}">Exam</button><br><br>
     </form>
-    <a href='/lesson/4'><button class="btn" type='button'>Previous</button></a>
-    <a href='/lesson/6'><button class="btn" type='button'>Next</button></a>
+    <a href='/lesson/4'><button class="btt" type='button'>Previous</button></a>
+    <a href='/lesson/6'><button class="btt" type='button'>Next</button></a>
 </div>
 {% endblock %}

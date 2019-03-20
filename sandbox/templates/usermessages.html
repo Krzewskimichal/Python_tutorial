@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>User {{ name }} messages</h1>
+
+    <div class="container">
+
+        <table class="table">
+
+            <thead>
+
+                <tr>
+                    <th>From</th>
+                    <th>Title</th>
+                    <th>Date</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+                {% for i in data %}
+
+                    <tr>
+                        <td>{{ i.from_user }}</td>
+                        <td><form action="" method="POST">
+                            {% csrf_token %}
+                            <input name="from_user" value="{{ i.from_user }}" hidden>
+                            <input name="time" value="{{ i.time }}" hidden>
+                            <button class="button_link" type="submit" name="message" value="{{ i.message }}">
+                                {{ i.message_title }}</button>
+                        </form></td>
+                        <td>{{ i.time }}</td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+
+        </table>
+        <p><a href="../"><button class="btt">Back</button></a></p>
+    </div>
+{% endblock %}

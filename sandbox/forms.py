@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from sandbox.models import BuiltInFunction, Exams, StringMethods, ListMethods, DictionaryMethods, TupleMethods, \
-    Keywords, SetMethods
+    Keywords, SetMethods, Messenger
 
 
 class LoginForm(forms.Form):
@@ -69,6 +69,15 @@ class DeleteDataForm(forms.Form):
     databases = (('BuiltInFunction', BuiltInFunction.__name__),
                  ('DictionaryMethods', DictionaryMethods.__name__),
                  ('ListMethods', ListMethods.__name__),
-                 )
+                 ('Keywords', Keywords.__name__),
+                 ('SetMethods', SetMethods.__name__),
+                 ('StringMethods', StringMethods.__name__),
+                 ('TupleMethods', TupleMethods.__name__))
 
     database = forms.ChoiceField(choices=databases)
+
+
+class UserWriteMessageForm(ModelForm):
+    class Meta:
+        model = Messenger
+        fields = ['to_user', 'message_title', 'message']

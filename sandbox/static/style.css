@@ -80,3 +80,24 @@ a:link, a:active, a:visited, a:hover
     padding: auto;
     font-size: 70px
 }
+.button_link
+{
+    border: none;
+    background-color: white;
+}
+.message_window
+{
+    border: 2px lightgray solid;
+    height: 300px;
+    width: 600px;
+}
+.btt
+{
+    color: white;
+    background-color: #28a745;
+    border-radius: 5px;
+    max-width: 250px;
+    min-width: 100px;
+    height: 40px;
+
+}
