@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h3>Community</h3>
+
+    <div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Since</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in user_feature %}
+            <tr>
+                <td>{{ user.user.username }}</td>
+                <td>{{ user.level }}</td>
+                <td>{{ user.user.date_joined }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <a href="/main/"><button class="btt">Back</button></a>
+    </div>
+{% endblock %}

@@ -210,9 +210,6 @@ class UserMessagesView(LoginRequiredMixin, View):
         message = request.POST.get('message')
         from_user = request.POST.get('from_user')
         time = request.POST.get('time')
-        print(message)
-        print(from_user)
-
         return render(request, 'userreadmessage.html', {'message': message,
                                                         'from_user': from_user,
                                                         'time': time})
@@ -235,6 +232,28 @@ class UserWriteMessageView(LoginRequiredMixin, View):
             return render(request, 'error.html', {'message': "Message has been sent"})
         else:
             return render(request, 'error.html', {'message': "Ups! Something gone wronge"})
+
+
+class SentMessagesView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        data = Messenger.objects.filter(from_user_id=request.user.id)
+        return render(request, 'usersentmessage.html', {'data': data})
+
+    def post(self, request):
+        message = request.POST.get('message')
+        to_user = request.POST.get('to_user')
+        time = request.POST.get('time')
+        return render(request, 'userreadmessage.html', {'message': message,
+                                                        'to_user': to_user,
+                                                        'time': time})
+
+
+class CommunityView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        user_feature = UserFeature.objects.all()
+        return render(request, 'community.html', {'user_feature': user_feature})
 
 
 #  -------------------Admin Site--------------------------------

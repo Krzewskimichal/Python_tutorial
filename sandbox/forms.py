@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from sandbox.models import BuiltInFunction, Exams, StringMethods, ListMethods, DictionaryMethods, TupleMethods, \
     Keywords, SetMethods, Messenger
 
